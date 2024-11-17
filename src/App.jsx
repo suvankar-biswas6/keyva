@@ -48,7 +48,7 @@ function App() {
 
   return (
     <div className='flex flex-col min-h-screen'>
-      <div className="max-w-max mx-auto shadow-md rounded-lg px-4 py-3 my-24 text-orange-500 bg-gray-800">
+      <div className="max-w-max mx-auto shadow-md rounded-lg px-4 py-3 my-16 text-orange-500 bg-gray-800">
         <h1 className='text-pink-400 text-center font-mono font-bold text-xl cursor-default'>Keyva</h1>
         <h1 className='text-white text-center my-3 font-mono font-semibold cursor-default mb-4'>Your Password Generator</h1>
         <div className="flex shadow rounded-lg overflow-hidden mb-6">
