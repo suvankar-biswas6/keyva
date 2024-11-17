@@ -3,7 +3,7 @@ import { FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa";
 import toast, { Toaster } from 'react-hot-toast';
 
 function App() {
-  const [length, setLength] = useState(8);
+  const [length, setLength] = useState(6);
   const [isNum, setIsNum] = useState(false);
   const [isChar, setIsChar] = useState(false);
   const [password, setPassword] = useState('');
@@ -14,11 +14,11 @@ function App() {
   const passwordGenerator = useCallback(() => {
     let pass = '';
     let str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-    if (isNum){
+    if (isNum) {
       str += '0123456789';
       // toast.success('Numbers Included')
     }
-    if (isChar){
+    if (isChar) {
       str += '!@#$%^&*()_[]{}+-';
       // toast.success('Special Characters Included')
     }
@@ -40,11 +40,12 @@ function App() {
     passwordGenerator();
   };
 
-  const copyPassword = useCallback(() =>{
+  const copyPassword = useCallback(() => {
     passwordRef.current?.select();
     window.navigator.clipboard.writeText(password);
     toast.success("Password copied.");
   }, [password]);
+
   return (
     <div className='flex flex-col min-h-screen'>
       <div className="max-w-max mx-auto shadow-md rounded-lg px-4 py-3 my-24 text-orange-500 bg-gray-800">
@@ -62,65 +63,71 @@ function App() {
           <button
             className='outline-none bg-blue-900 text-white px-3 py-1 shrink-0 hover:bg-blue-600'
             onClick={copyPassword}
-            >Copy</button>
+          >Copy</button>
         </div>
-        <div className="flex text-sm gap-x-2">
+    </div>
 
-          <div className="flex items-center gap-x-1">
-            <input type="range"
-              min={6}
-              max={100}
-              value={length}
-              className='cursor-pointer'
-              onChange={(e) => setLength(e.target.value)}
-            />
-            <label className='outline-none bg-blue-900 text-white px-4 py-0.5 shrink-0 rounded-xl'>
-              Length: {length}</label>
-          </div>
+        <div className='flex items-center justify-center'>
+          <div className="text-sm gap-x-2 items-center justify-center">
 
-          <div className="flex items-center gap-x-1">
-            <input
-              type="checkbox"
-              defaultChecked={isNum}
-              id='numberInput'
-              onChange={() => {
-                setIsNum((prev) => !prev);
-              }}
-            />
+            <div className="flex items-center gap-x-1 mb-4">
+              <label className='outline-none bg-blue-900 text-white px-4 shrink-0 rounded-xl py-1'>
+                Length: {length}</label>
+              <input type="range"
+                min={6}
+                max={100}
+                value={length}
+                className='cursor-pointer'
+                onChange={(e) => setLength(e.target.value)}
+              />
+            </div>
+
+            <div className="flex items-center gap-x-1 mb-4">
             <label className='outline-none bg-blue-900 text-white px-3 py-0.5 rounded-xl'>
-              Numbers </label>
-          </div>
+            Numbers </label>
+              <input
+                type="checkbox"
+                defaultChecked={isNum}
+                id='numberInput'
+                onChange={() => {
+                  setIsNum((prev) => !prev);
+                }}
+              />
+              
+            </div>
 
-          <div className="flex items-center gap-x-1">
-            <input
-              type="checkbox"
-              defaultChecked={isChar}
-              id='charInput'
-              onChange={() => {
-                setIsChar((prev) => !prev);
-              }}
-            />
+            <div className="flex items-center gap-x-1 mb-4">
             <label className='outline-none bg-blue-900 text-white px-3 py-0.5 shrink-0 rounded-xl'>
-              Special Characters</label>
+            Special Characters</label>
+              <input
+                type="checkbox"
+                defaultChecked={isChar}
+                id='charInput'
+                onChange={() => {
+                  setIsChar((prev) => !prev);
+                }}
+              />
+              
+            </div>
+
+            <div className="flex items-center gap-x-1">
+              <button
+                type="button"
+                id="newone"
+                onClick={handleClick}
+                className="outline-none bg-blue-900 text-white px-3 py-0.5 rounded-xl hover:bg-blue-600"
+              >
+                Get a New One
+              </button>
+
+            </div>
+
           </div>
-
-          <div className="flex items-center gap-x-1">
-            <button
-              type="button"
-              id="newone"
-              onClick={handleClick}
-              className="outline-none bg-blue-900 text-white px-3 py-0.5 rounded-xl hover:bg-blue-600"
-            >
-              Get a New One
-            </button>
-
-          </div>
-
         </div>
-      </div>
+      
       <Toaster position="top-center" reverseOrder={false} />
 
-      <footer className="bg-gray-900 text-center text-white py-3 mt-auto font-mono">
+      <footer className=" bg-gray-900 text-center text-white py-3 mt-auto font-mono">
         <p className="text mb-3">
           © 2024 Keyva | All rights reserved.
         </p>
@@ -130,7 +137,7 @@ function App() {
           className="underline text-orange-500"
         >
         </a>
-        <div className="flex justify-center gap-x-4 mt-2">
+        <div className="flex justify-center gap-x-4 mt-2 flex-wrap">
           {/* GitHub */}
           <a
             href="https://github.com/suvankar-biswas6"
